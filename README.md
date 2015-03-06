@@ -16,6 +16,8 @@ Feel free to access [my portfolio] (http://gurufair.com)
 
 Lorem Ipsum has been the industry's standard dummy text ever since the **1500s**
 
+Lorem Ipsum has been the industry's standard dummy text ever since the ***1500s***
+
 ### Crazy good software development
 * Rapid development
 + Rapid deploy
