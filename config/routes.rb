@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :companies do
+    collection { post :import}
+  end
+
   devise_for :users
   get 'welcome/index'
 
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
   get 'welcome/features'
 
   resources :invoices
+  resources :companies
 
   root to: 'welcome#index'
 end

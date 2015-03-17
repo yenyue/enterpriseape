@@ -1,0 +1,54 @@
+
+<div class="row">
+  <h1>Listing companies</h1>
+  <div class="pull-right range-query">
+    <%= form_tag companies_path, method: :get do  %>
+      <%= label_tag 'Status' %>
+      <%= text_field_tag 'search[status]', @search.status %>
+      <%= label_tag 'Terms' %>
+      <%= text_field_tag 'search[terms]', @search.terms %>
+      <%= submit_tag 'Search', class: 'btn search-button' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="media">
+  <div class="media-body">
+    <table class="table table_hover">
+
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Manager</th>
+          <th>Status</th>
+          <th>Terms</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @companies.each do |company| %>
+          <tr>
+            <td><%= company.name %></td>
+            <td><%= company.manager %></td>
+            <td><%= company.status %></td>
+            <td><%= company.terms %></td>
+            <td><%= link_to 'Show', company, class: 'btn btn-mini' %></td>
+            <td><%= link_to 'Edit', edit_company_path(company), class: 'btn btn-mini btn-success' %></td>
+            <td><%= link_to 'Destroy', company, method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+<h3>Import Companies</h3>
+<%= form_tag import_companies_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload Companies (.csv)" %>
+<% end %>
+
+<%= link_to 'New Company', new_company_path %>
