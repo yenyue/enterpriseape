@@ -3,9 +3,9 @@
   <h1>Listing companies</h1>
   <div class="pull-right range-query">
     <%= form_tag companies_path, method: :get do  %>
-      <%= label_tag 'Status' %>
+      <%= label_tag 'Status (% to show all)' %>
       <%= text_field_tag 'search[status]', @search.status %>
-      <%= label_tag 'Terms' %>
+      <%= label_tag 'Terms (% to show all)' %>
       <%= text_field_tag 'search[terms]', @search.terms %>
       <%= submit_tag 'Search', class: 'btn search-button' %>
     <% end %>
