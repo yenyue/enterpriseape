@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :companies do
-    collection { post :import}
+#    collection { post :import}
+    collection do
+      post :import
+      get :search
+    end
   end
 
   devise_for :users

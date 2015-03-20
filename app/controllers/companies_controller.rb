@@ -8,6 +8,13 @@ class CompaniesController < ApplicationController
  #   respond_with(@companies)
     @search = CompanySearch.new(params[:search])
     @companies = @search.scope
+    
+    respond_to do |format|
+      format.html
+#      format.csv { render text: @companies.to_csv }
+#      format.csv { send_data @companies.to_csv }
+
+    end
    end
 
   def show
@@ -42,6 +49,20 @@ class CompaniesController < ApplicationController
     Company.import(params[:file])
     redirect_to companies_path, notice: "Companies Added Successfully"
   end
+  
+  def search
+#    @search = CompanySearch.new(params[:search])
+#    @companies = @search.scope
+
+    @companies = Company.all
+
+    respond_to do |format|
+      format.html
+#      format.csv { render text: @companies.to_csv }
+      format.csv { send_data @companies.to_csv }
+    end
+  end
+    
 
   private
     def set_company
