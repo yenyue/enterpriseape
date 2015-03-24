@@ -4,16 +4,16 @@ class CompaniesController < ApplicationController
   respond_to :html
 
   def index
- #   @companies = Company.all
+ #  @companies = Company.all
  #   respond_with(@companies)
     @search = CompanySearch.new(params[:search])
     @companies = @search.scope
-    
+    @@report = @search
+      
     respond_to do |format|
       format.html
 #      format.csv { render text: @companies.to_csv }
-#      format.csv { send_data @companies.to_csv }
-
+      format.csv { send_data @companies.to_csv }
     end
    end
 
@@ -51,10 +51,10 @@ class CompaniesController < ApplicationController
   end
   
   def search
-#    @search = CompanySearch.new(params[:search])
-#    @companies = @search.scope
+#    @reportsearch = CompanySearch.new(params[:search])
+#    @companies = @reportsearch.scope
 
-    @companies = Company.all
+    @companies = Company.where('status like ? AND  terms like ?', @@report.status, @@report.terms)
 
     respond_to do |format|
       format.html
