@@ -4,8 +4,8 @@ class CompaniesController < ApplicationController
   respond_to :html
 
   def index
- #  @companies = Company.all
- #   respond_with(@companies)
+#   @companies = Company.all
+#    respond_with(@companies)
     @search = CompanySearch.new(params[:search])
     @companies = @search.scope
     @@report = @search
