@@ -5,7 +5,7 @@
     <%= form_tag companies_path, method: :get do  %>
       <%= label_tag 'Status (% to show all)' %>
       <%= text_field_tag 'search[status]', @search.status %>
-      <%= label_tag 'Terms (% to show all)' %>
+      <%= label_tag 'Terms' %>
       <%= text_field_tag 'search[terms]', @search.terms %>
       <%= submit_tag 'Search', class: 'btn search-button' %>
     <% end %>

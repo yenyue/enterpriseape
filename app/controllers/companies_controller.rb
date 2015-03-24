@@ -54,7 +54,7 @@ class CompaniesController < ApplicationController
 #    @reportsearch = CompanySearch.new(params[:search])
 #    @companies = @reportsearch.scope
 
-    @companies = Company.where('status like ? AND  terms like ?', @@report.status, @@report.terms)
+    @companies = Company.where('status like ? AND  terms = ?', @@report.status, @@report.terms)
 
     respond_to do |format|
       format.html
