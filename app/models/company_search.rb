@@ -8,7 +8,15 @@ class CompanySearch
   end
   
   def scope
-    Company.where('status like ? AND  terms = ?', @status, @terms)
+    if @status == "" and @terms == ""
+      Company.all
+    elsif @status == "" and @terms != ""
+      Company.where('terms = ?', @terms)
+    elsif @status != "" and @terms == ""
+      Company.where('status like ?', @status)
+    else
+      Company.where('status like ? AND  terms = ?', @status, @terms)
+    end
   end
   
   private

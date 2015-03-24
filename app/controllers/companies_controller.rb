@@ -8,7 +8,7 @@ class CompaniesController < ApplicationController
 #    respond_with(@companies)
     @search = CompanySearch.new(params[:search])
     @companies = @search.scope
-    @@report = @search
+    @@report_companies = @companies
       
     respond_to do |format|
       format.html
@@ -54,12 +54,13 @@ class CompaniesController < ApplicationController
 #    @reportsearch = CompanySearch.new(params[:search])
 #    @companies = @reportsearch.scope
 
-    @companies = Company.where('status like ? AND  terms = ?', @@report.status, @@report.terms)
-
+#    @companies = Company.where('status like ? AND  terms = ?', @@report.status, @@report.terms)
+    
     respond_to do |format|
       format.html
 #      format.csv { render text: @companies.to_csv }
-      format.csv { send_data @companies.to_csv }
+#      format.csv { send_data @companies.to_csv }
+      format.csv { send_data @@report_companies.to_csv }
     end
   end
     

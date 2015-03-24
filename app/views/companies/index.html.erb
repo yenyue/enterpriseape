@@ -3,7 +3,7 @@
   <h1>Listing companies</h1>
   <div class="pull-right range-query">
     <%= form_tag companies_path, method: :get do  %>
-      <%= label_tag 'Status (% to show all)' %>
+      <%= label_tag 'Status' %>
       <%= text_field_tag 'search[status]', @search.status %>
       <%= label_tag 'Terms' %>
       <%= text_field_tag 'search[terms]', @search.terms %>
