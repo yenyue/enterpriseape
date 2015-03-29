@@ -39,7 +39,8 @@
     <div class="control-group">
       <%= f.label 'Status', class: 'control-label' %><br>
      <div class="controls">
-       <%= f.select(:status_type, options_for_select([['PAID', 'PAID'], ['PENDING', 'PENDING']]), {include_blank: true}) %>
+<!-- options_for_select (options_array, object.field) to set the default to the database value -->
+       <%= f.select(:status_type, options_for_select([['PAID', 'PAID'], ['PENDING', 'PENDING']], @invoice.status_type), {include_blank: true}) %>
      </div>
     </div>
     <div class="control-group">
