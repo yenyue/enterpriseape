@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331181321) do
+ActiveRecord::Schema.define(version: 20150409203719) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -39,6 +39,24 @@ ActiveRecord::Schema.define(version: 20150331181321) do
     t.string   "status_type"
     t.integer  "employee_id"
   end
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "purchases", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.integer  "invoice_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "purchases", ["invoice_id"], name: "index_purchases_on_invoice_id"
+  add_index "purchases", ["product_id"], name: "index_purchases_on_product_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
