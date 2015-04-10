@@ -25,17 +25,17 @@
     <table class="table table_hover">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Quantity</th>
+          <th><h4>Product</h4></th>
+          <th><h4>Category</h4></th>
+          <th><h4>Quantity</h4></th>
         </tr>
       </thead>
       <tbody>
         <% @purchases.each do |purchase| %>
           <tr>
-            <td><h4><%= purchase.product.name %></h4></td>
-            <td><h4><%= purchase.product.category %></h4></td>
-            <td><h4><%= purchase.quantity %></h4></td>
+            <td><h5><%= purchase.product.name %></h5></td>
+            <td><h5><%= purchase.product.category %></h5></td>
+            <td><h5><%= purchase.quantity %></h5></td>
           </tr>
         <% end %>
       </tbody>
