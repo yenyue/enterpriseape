@@ -1,8 +1,7 @@
-class PurchasesController < ApplicationController
-  before_action :set_purchase, only: [:show, :edit, :update, :destroy]
+class Invoices::PurchasesController < ApplicationController
 
-  respond_to :html
-
+  respond_to :html, :json
+  
   def index
     @purchases = Purchase.all
     respond_with(@purchases)
@@ -13,17 +12,30 @@ class PurchasesController < ApplicationController
   end
 
   def new
+    @invoice = Invoice.find(params[:invoice_id])
     @purchase = Purchase.new
-    respond_with(@purchase)
+    respond_with(@invoice, @purchase)
   end
 
   def edit
   end
 
   def create
+    @invoice = Invoice.find(params[:invoice_id])
     @purchase = Purchase.new(purchase_params)
+    @purchase.invoice = @invoice
     @purchase.save
-    respond_with(@purchase)
+    respond_with(@invoice, @purchase, :location => invoice_path(@invoice))
+    
+#    respond_to do |format|
+#      if @purchase.save
+#        format.html {redirect_to @invoice, notice: 'Purchase was successfully created.'}
+#        format.json {render action: 'show', status: :created, location: @invoice}
+#      else
+#        format.html {render action: 'new'}
+#        format.json {render json: @invoice.errors, status: :unprocessable_entity}
+#      end
+#    end
   end
 
   def update
